@@ -88,7 +88,7 @@
     hasAnyRowConflicts: function() {
       const board = this.rows();
       return _.some(board, (row, i) => {
-        return this.hasRowConflictAt.call(this, i);
+        return this.hasRowConflictAt(i);
       });
     },
 
@@ -99,12 +99,19 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      const col = _.map(this.rows(), (row) => {
+        return row[colIndex];
+      });
+      const colSum = _.reduce(col, (acc, cv) => acc + cv);
+      return colSum > 1;
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      const board = this.rows();
+      return _.some(board, (col, i) => {
+        return this.hasColConflictAt(i);
+      });
     },
 
 
