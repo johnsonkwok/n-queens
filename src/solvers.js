@@ -136,3 +136,9 @@ window.countNQueensSolutions = function (n) {
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
+
+// Time Complexity
+// findNRooksSolution: O(n^n)
+// countNRooksSolutions: O(n^n)
+// findNQueensSolution: O(n^n)
+// countNQueensSolutions: O(n^n)

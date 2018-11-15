@@ -61,6 +61,15 @@
       );
     },
 
+    // Time Complexity
+    // rows: O(n)
+    // togglePiece: O(1)
+    // _getFirstRowColumnIndexForMajorDiagonalOn: O(1)
+    // _getFirstRowColumnIndexForMinorDiagonalOn: O(1)
+    // hasAnyRooksConflicts: O(n^2)
+    // hasAnyQueenConflictsOn: O(n)
+    // hasAnyQueensConflicts: O(n^2)
+    // isInBounds: O(1)
 
     /*
              _             _     _
@@ -92,7 +101,9 @@
       });
     },
 
-
+    // Time Complexity
+    // hasRowConflictAt: O(n)
+    // hasAnyRowConflicts: O(n)
 
     // COLUMNS - run from top to bottom
     // --------------------------------------------------------------
@@ -114,7 +125,9 @@
       });
     },
 
-
+    // Time Complexity
+    // hasColConflictAt: O(n)
+    // hasAnyColConflicts: O(n) 
 
     // Major Diagonals - go from top-left to bottom-right
     // --------------------------------------------------------------
@@ -147,7 +160,9 @@
       return hasConflict;
     },
 
-
+    // Time Complexity
+    // hasMajorDiagonalConflictAt: O(n)
+    // hasAnyMajorDiagonalConflicts: O(n)
 
     // Minor Diagonals - go from top-right to bottom-left
     // --------------------------------------------------------------
@@ -179,6 +194,10 @@
       }
       return hasConflict;
     }
+
+    // Time Complexity
+    // hasMinorDiagonalConflictAt: O(n)
+    // hasAnyMinorDiagonalConflicts: O(n)
 
     /*--------------------  End of Helper Functions  ---------------------*/
 
