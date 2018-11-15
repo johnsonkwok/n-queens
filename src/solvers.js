@@ -13,17 +13,31 @@
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
 window.findNRooksSolution = function (n) {
-  let board = new Board({ n: n });
-  const solution = [];
+  const board = new Board({ n });
+  let solution;
+  let solnFound = false;
 
-  const makeSoln = function (rooksLeft, placedSoFar) {
-    if (rooksLeft === n) {
-      // solution.push(placedSoFar)
-    } else {
-
+  const checkEachRow = function (rowIdx, currBoard) {
+    const row = currBoard.get(rowIdx);
+    const nextRowIdx = rowIdx + 1;
+    
+    for (let i = 0; i < row.length; i++) {
+      if (!solnFound) {
+        currBoard.togglePiece(rowIdx, i);
+        if (!currBoard.hasAnyRooksConflicts()) {
+          if (nextRowIdx === n) {
+            solution = currBoard.rows();
+            solnFound = true;
+          } else {
+            checkEachRow(nextRowIdx, currBoard);
+          }
+        }
+        (!solnFound) && currBoard.togglePiece(rowIdx, i);
+      }
     }
-
   };
+
+  checkEachRow(0, board);
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
 };
@@ -58,8 +72,31 @@ window.countNRooksSolutions = function (n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function (n) {
-  var solution = undefined; //fixme
+  const board = new Board({ n });
+  let solution;
+  let solnFound = false;
 
+  const checkEachRow = function (rowIdx, currBoard) {
+    const row = currBoard.get(rowIdx);
+    const nextRowIdx = rowIdx + 1;
+    
+    for (let i = 0; i < row.length; i++) {
+      if (!solnFound) {
+        currBoard.togglePiece(rowIdx, i);
+        if (!currBoard.hasAnyQueensConflicts()) {
+          if (nextRowIdx === n) {
+            solution = currBoard.rows();
+            solnFound = true;
+          } else {
+            checkEachRow(nextRowIdx, currBoard);
+          }
+        }
+        (!solnFound) && currBoard.togglePiece(rowIdx, i);
+      }
+    }
+  };
+  
+  checkEachRow(0, board);
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
   return solution;
 };
